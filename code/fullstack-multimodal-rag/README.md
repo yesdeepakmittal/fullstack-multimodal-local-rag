@@ -16,23 +16,39 @@ A fullstack Retrieval-Augmented Generation (RAG) application that supports multi
 ## Quick Start
 
 1. **Clone the repository**
-2. **Install dependencies**
+2. **Create a virtual environment:**
+   ```bash
+   python -m venv .venv
+   source .venv/bin/activate
+   ```
+3. **Install dependencies**
    ```bash
    pip install -r requirements.txt
    ```
-3. **Run VectorDB**
+4. **Install and start Ollama as a Docker Container:**
    ```bash
-   docker compose -f docker-compose.yml up
+   docker run -d -v ollama:/root/.ollama -p 11434:11434 --name ollama ollama/ollama
    ```
-4. **Ingest Chunks**
+5. **Pull required models:**
    ```bash
-   python ingestion.py
+   docker exec -it ollama ollama run deepseek-r1:1.5b          
+   docker exec -it ollama ollama run nomic-embed-text # For embeddings
    ```
-5. **Create `.env` file & Save API KEY**
+6. **Start OpenSearch:**  
+   ```bash
+   docker compose -f docker-compose.yml
+   ```
+   Make sure your OpenSearch instance is running on `localhost:9200` (or update the connection settings in the code)
+
+7. **Create `.env` file & Save API KEY**
    ```bash
    GEMINI_API_KEY=
    ```
-5. **Run the app**
+8. **Ingest Chunks**
+   ```bash
+   python ingestion.py
+   ```
+9. **Run the app**
    ```bash
    python app.py
    ```
