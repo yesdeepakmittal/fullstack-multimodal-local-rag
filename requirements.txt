@@ -1,6 +1,0 @@
-crewai>=0.28.0
-crewai_tools>=0.1.6
-langchain_ollama>=0.0.3
-gradio>=4.0.0
-elevenlabs>=0.2.26
-python-dotenv>=1.0.0

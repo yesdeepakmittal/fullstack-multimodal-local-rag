@@ -1,7 +1,7 @@
 from crewai import LLM, Agent, Crew, Process, Task
 from crewai_tools import FirecrawlScrapeWebsiteTool
 from dotenv import load_dotenv
-
+import os
 # from langchain_ollama import OllamaLLM
 
 # Load environment variables
@@ -15,10 +15,11 @@ load_dotenv()
 llm = LLM(
     model="gemini/gemini-2.0-flash",
     temperature=0.7,
+    api_key=os.getenv("GEMINI_API_KEY"),
 )
 
 # Initialize tools
-tools = [FirecrawlScrapeWebsiteTool()]
+tools = [FirecrawlScrapeWebsiteTool(api_key=os.getenv("FIRECRAWL_API_KEY"))]
 
 # Create Agents
 blog_scraper = Agent(

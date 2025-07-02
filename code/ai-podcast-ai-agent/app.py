@@ -1,12 +1,12 @@
 import os
 
 import gradio as gr
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 from elevenlabs import ElevenLabs
 
 from blog_summarizer import summarize_blog
 
-load_dotenv()
+# load_dotenv()
 
 
 def process_url(url):
@@ -65,4 +65,4 @@ with gr.Blocks(title="AI Podcast Generator", theme="soft") as demo:
     )
 
 if __name__ == "__main__":
-    demo.launch()
+    demo.launch(server_name="0.0.0.0", server_port=7860, auth=("devmode","testdeployment8721"))
